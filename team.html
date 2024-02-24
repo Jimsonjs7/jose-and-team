@@ -6,6 +6,93 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>TEAM </h1>
+    <section id="team">
+
+        <div class="team">
+            <style>
+                .team-cover {
+                    width: 2000px;
+                    height: 1000px;
+                    background-image: url('spider\ verse.jpg');
+                    animation: slideBackground 10s infinite linear;
+                }
+            
+                @keyframes slideBackground {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+                    100% {
+                        background-position: 100% 50%;
+                    }
+                }
+                
+                .fade-up {
+    opacity: 0; /* Start with transparent */
+    animation: fadeUpAnimation 1s forwards; /* Animation duration and fill-mode */
+}
+
+@keyframes fadeUpAnimation {
+    from {
+        opacity: 0; /* Start from transparent */
+        transform: translateY(20px); /* Start 20px below its original position */
+    }
+    to {
+        opacity: 1; /* End with fully opaque */
+        transform: translateY(0); /* Return to original position */
+    }
+}
+.image-container img {
+    opacity: 0; /* Start with transparent */
+    animation: fadeUpAnimation 1s forwards; /* Animation duration and fill-mode */
+}
+
+@keyframes fadeUpAnimation {
+    from {
+        opacity: 0; /* Start from transparent */
+        transform: translateY(20px); /* Start 20px below its original position */
+    }
+    to {
+        opacity: 1; /* End with fully opaque */
+        transform: translateY(0); /* Return to original position */
+    }
+}
+.fullscreen-image {
+    width: 100vw; /* 100% of viewport width */
+    height: 100vh; /* 100% of viewport height */
+    object-fit: cover; /* Cover the entire container */
+}
+.text-container {
+  position:fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px; /* Adjust padding as needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Background color with transparency */
+  color: white; /* Text color */
+}
+
+                
+            </style>
+            
+            <div class="image-container">
+               
+            
+            <div class="team-cover wow animated fadeInUp"  data-wow-duration="1s" data-wow-delay=".2s">
+                <!-- Content inside the div -->
+            
+            
+            <div class="text-container">
+            <div class="fade-up"data-wow-duration="1s" data-wow-delay=".2s" align="right" >
+                <legend>
+                    <h1>Team</h1>
+                </legend>
+                <p>we're Jose  &amp; <br>team &hearts;</p>
+                <button type="button" class="btn btn-general btn-brown">Read our story</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    
+  
 </body>
 </html>
