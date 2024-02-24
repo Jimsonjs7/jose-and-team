@@ -4,60 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
-<style>
-    body{
-        font-family: Arial,sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-    header{
-        background-color: #333;
-        padding: 1em;
-        text-align: center;
-        color: white;
-    }
-    nav{
-        background-color: #555;
-        overflow: hidden;
-    }
-    nav a{
-        float: left;
-        display: block;
-        color:bisque;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration:wavy;
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://img.freepik.com/free-photo/majestic-mountain-peak-tranquil-winter-landscape-generated-by-ai_188544-15662.jpg?w=740&t=st=1708766941~exp=1708767541~hmac=6cb9a65b6765380800bd0bfc3f815deeb56c4e3a0a8114c641c6bc709555c808");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
         
-    }
-    nav a :hover{
-        background-color: whitesmoke;
-        color:white;
-    }
-    img{
-        width: 100%;
-        height: auto;
-    }
-</style>
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1em;
+            text-align: center;
+            color: white;
+        }
+        
+        nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        nav a {
+            float: left;
+            display: block;
+            color: bisque;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: wavy;
+            transition: background-color 0.3s; /* Added smooth transition effect */
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Set a transparent background on hover */
+            color: white;
+        }
+        
+        img.logo {
+            width: 100px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        img.banner {
+            width: 100%;
+            height: auto;
+        }
+        
+        .welcome-container {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
-<body >
+<body>
     <header>
-        <div >
-       <img src="bwmlogoo.webp" style="width: 100px;height: 50px; " align="left" >
-       
-        <h1>Home Page</h1>
-  </div>
+        <div>
+           
+            <h1>Home Page</h1>
+        </div>
     </header>
+    
     <nav>
         <a href="services.html">SERVICES</a>
         <a href="login.html">LOGIN</a>
         <a href="team.html">TEAM</a>
         <a href="showcase.html">SHOWCASE</a>
         <a href="readandblog.html">READ OUR BLOGS</a>
-
-    </nav>    
-     <img src="bwm.jpg" alt="bwm">
-     <h2>Welcome to our website </h2>
-     <p>Explore and enjoy our content </p>
-     </body>
+        <a href="contact.html">CONTACT AND SUPPORT</a>
+    </nav>
+    
+    <div class="welcome-container">
+        <h2>Welcome to our website</h2>
+        <p>Explore and enjoy our content</p>
+    </div>
+</body>
 </html>
