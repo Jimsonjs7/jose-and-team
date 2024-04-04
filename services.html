@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
+  <title>Service Page</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'><link rel="stylesheet" href="style footer.css">
+
   <style>
     /* CSS code for styling */
     body {
@@ -15,8 +17,8 @@
     }
 
     header {
-      background-color: #333;
-      color: #fff;
+      background-color: #00000048;
+      color:bisque;
       padding: 20px;
       text-align: center;
     }
@@ -39,13 +41,12 @@
 
     .product {
       background-color: #ffffff;
-      padding: 20px;
+      padding: 10px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       color: #ffffffcc;
      
-    padding-right: 30px; /* Increase the gap between the left div and the right div using padding-right */
-    box-sizing: border-box; 
+   
     }
 
     .product h2 {
@@ -55,6 +56,26 @@
     .product p {
       margin-bottom: 0;
     }
+     
+    nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        nav a {
+            float: left;
+            display: block;
+            color: bisque;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: wavy;
+            transition: background-color 0.3s; /* Added smooth transition effect */
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Set a transparent background on hover */
+            color: white;
+        }
   </style>
 </head>
 <body>
@@ -62,9 +83,18 @@
   <header>
     <h1>Welcome to Our Services</h1>
   </header>
+  <nav>
+    <a href="index.html">HOME </a>
+    <a href="services.html">SERVICES</a>
+    <a href="login.html">LOGIN</a>
+    <a href="team.html">TEAM</a>
+    <a href="showcase.html">SHOWCASE</a>
+    <a href="readandblog.html">READ OUR BLOGS</a>
+    <a href="contact.html">CONTACT AND SUPPORT</a>
+</nav>
 
   <div class="container" >
-    <h2 style="color: #ffffff;">Our Products</h2>
+    <h2 style="color:bisque;">Our Products</h2>
     <div class="product-list">
       <div class="product" style="background-image: -webkit-image-set('nos.jpg');box-shadow: 10px 10px 10px rgba(12, 11, 11, 0.87);">
         <h2>Nitrous Oxide System Gas Cylinder </h2>
