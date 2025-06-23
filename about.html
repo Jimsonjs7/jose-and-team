@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about StudyHub's mission, vision, and team, dedicated to providing free college notes and study materials.">
+    <meta name="keywords" content="about studyhub, college notes, study materials, mission, vision">
+    <meta name="author" content="StudyHub">
+    <title>About Us - StudyHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, #4f46e5, #7e22ce, #ec4899);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Background Elements */
+        .floating-shapes {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -10;
+        }
+
+        .floating-shapes div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape1 { top: 20%; left: 10%; width: 80px; height: 80px; }
+        .shape2 { top: 60%; right: 10%; width: 120px; height: 120px; animation-delay: 2s; }
+        .shape3 { bottom: 20%; left: 30%; width: 60px; height: 60px; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* About Sections */
+        .about {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .cta-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 9999px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 2px solid transparent;
+            background-image: linear-gradient(to right, #06b6d4, #8b5cf6, #ec4899);
+            background-size: 100% 2px;
+            background-repeat: no-repeat;
+            background-position: top;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .about-section h1 {
+                font-size: 2rem;
+            }
+
+            .about-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-section p {
+                font-size: 1rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content {
+                padding: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-shapes">
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+        <div class="shape3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="logo" aria-label="StudyHub logo">
+                <span aria-hidden="true">📚</span> StudyHub
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="subjects.html">Subjects</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <!-- About Sections -->
+    <main>
+        <section class="about">
+            <div class="about-section">
+                <h1>About StudyHub</h1>
+                <p>StudyHub is dedicated to empowering students worldwide by providing free, high-quality college notes and study materials accessible via Google Drive, with no sign-up required.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Story</h2>
+                <div class="story-grid">
+                    <div class="story-content">
+                        <p>StudyHub was born from a simple idea: make quality study resources freely available to all students. Founded by a team of educators and enthusiasts, we recognized the need for organized, accessible notes to support college students in their academic journeys.</p>
+                        <p>We curate and organize comprehensive study materials across various subjects, hosted on Google Drive for easy access. Our platform eliminates barriers, ensuring students can focus on learning without the hassle of subscriptions or sign-ups.</p>
+                    </div>
+                    <div class="story-content">
+                        <p>Since our inception, we’ve been committed to growing our repository of notes, partnering with educators to provide reliable, exam-focused resources. StudyHub is more than a platform—it’s a movement to democratize education for students everywhere.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>We aim to make education accessible to all by curating and sharing high-quality study resources across various subjects, helping students excel in their academic pursuits without financial or logistical barriers.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Vision</h2>
+                <p>To create a global learning community where students can freely access organized, high-quality educational materials, fostering academic success and collaboration worldwide.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Team</h2>
+                <p>Our dedicated team of educators, content curators, and volunteers works tirelessly to ensure StudyHub provides the best possible resources for students.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h3>Dr. Jane Smith</h3>
+                        <p>Educational Advisor</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>John Doe</h3>
+                        <p>Content Curator</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Emily Johnson</h3>
+                        <p>Community Manager</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Mark Wilson</h3>
+                        <p>Resource Organizer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="cta-content">
+                    <h2>Explore StudyHub</h2>
+                    <p>Browse our extensive collection of free study materials or get in touch to learn more about our mission.</p>
+                    <div class="cta-buttons">
+                        <a href="subjects.html" class="btn btn-primary">Browse Notes</a>
+                        <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 StudyHub - Empowering Students Worldwide. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access free college notes and study materials by subject at StudyHub.">
+    <meta name="keywords" content="college notes, study materials, subjects, student resources">
+    <meta name="author" content="StudyHub">
+    <title>Subjects - StudyHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, #4f46e5, #7e22ce, #ec4899);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Background Elements */
+        .floating-shapes {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -10;
+        }
+
+        .floating-shapes div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape1 { top: 20%; left: 10%; width: 80px; height: 80px; }
+        .shape2 { top: 60%; right: 10%; width: 120px; height: 120px; animation-delay: 2s; }
+        .shape3 { bottom: 20%; left: 30%; width: 60px; height: 60px; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Controls Section */
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: none;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Subjects Grid */
+        .subjects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .subject-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .subject-icon {
+            font-size: 2rem;
+        }
+
+        .subject-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .subject-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .meta-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .semester-badge { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .notes-count { background: linear-gradient(135deg, #56ab2f, #a8e6cf); }
+        .difficulty-badge { background: linear-gradient(135deg, #ffb347, #ffcc02); color: #1e293b; }
+
+        .notes-list {
+            list-style: none;
+        }
+
+        .note-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .note-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .note-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .note-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .note-icon {
+            font-size: 1.2rem;
+        }
+
+        .note-title {
+            font-weight: 500;
+        }
+
+        .note-size {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .download-icon {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            display: none;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 2px solid transparent;
+            background-image: linear-gradient(to right, #06b6d4, #8b5cf6, #ec4899);
+            background-size: 100% 2px;
+            background-repeat: no-repeat;
+            background-position: top;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: none;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-shapes">
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+        <div class="shape3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="logo" aria-label="StudyHub logo">
+                <span aria-hidden="true">📚</span> StudyHub
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="subjects.html" class="active">Subjects</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <h1>Study Materials</h1>
+            <p>Explore free notes and resources across various subjects, organized by category and accessible via Google Drive.</p>
+        </section>
+
+        <section class="controls">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search subjects or topics..." aria-label="Search subjects">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="computer-science">CS</button>
+                <button class="filter-btn" data-filter="electronics">ECE</button>
+                <button class="filter-btn" data-filter="mechanical">Mechanical</button>
+                <button class="filter-btn" data-filter="mathematics">Math</button>
+            </div>
+        </section>
+
+        <section class="subjects-container">
+            <div class="subjects-grid" id="subjectsGrid">
+                <div class="subject-card" data-category="computer-science" data-keywords="programming c language coding">
+                    <div class="subject-header">
+                        <span class="subject-icon" aria-hidden="true">💻</span>
+                        <h3 class="subject-title">C Programming</h3>
+                    </div>
+                    <div class="subject-meta">
+                        <span class="meta-badge semester-badge">Semester 1</span>
+                        <span class="meta-badge notes-count">3 Notes</span>
+                        <span class="meta-badge difficulty-badge">Beginner</span>
+                    </div>
+                    <ul class="notes-list">
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/1A2B3C4D5E6F7G8H9I0J" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📄</span>
+                                    <div>
+                                        <div class="note-title">Introduction to C Programming</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/2B3C4D5E6F7G8H9I0J1" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📊</span>
+                                    <div>
+                                        <div class="note-title">Arrays and Strings</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/3C4D5E6F7G8H9I0J1K2" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🔧</span>
+                                    <div>
+                                        <div class="note-title">Functions & Recursion</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="subject-card" data-category="mathematics" data-keywords="calculus derivatives integrals">
+                    <div class="subject-header">
+                        <span class="subject-icon" aria-hidden="true">📐</span>
+                        <h3 class="subject-title">Mathematics I</h3>
+                    </div>
+                    <div class="subject-meta">
+                        <span class="meta-badge semester-badge">Semester 1</span>
+                        <span class="meta-badge notes-count">3 Notes</span>
+                        <span class="meta-badge difficulty-badge">Intermediate</span>
+                    </div>
+                    <ul class="notes-list">
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/4D5E6F7G8H9I0J1K2L3" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📈</span>
+                                    <div>
+                                        <div class="note-title">Differential Calculus</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/5E6F7G8H9I0J1K2L3M4" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">∫</span>
+                                    <div>
+                                        <div class="note-title">Integral Calculus</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/6F7G8H9I0J1K2L3M4N5" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📋</span>
+                                    <div>
+                                        <div class="note-title">Series and Sequences</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="subject-card" data-category="electronics" data-keywords="digital logic gates circuits">
+                    <div class="subject-header">
+                        <span class="subject-icon" aria-hidden="true">🔌</span>
+                        <h3 class="subject-title">Digital Logic Design</h3>
+                    </div>
+                    <div class="subject-meta">
+                        <span class="meta-badge semester-badge">Semester 2</span>
+                        <span class="meta-badge notes-count">3 Notes</span>
+                        <span class="meta-badge difficulty-badge">Intermediate</span>
+                    </div>
+                    <ul class="notes-list">
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/7G8H9I0J1K2L3M4N5O6" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🚪</span>
+                                    <div>
+                                        <div class="note-title">Logic Gates & Boolean Algebra</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/8H9I0J1K2L3M4N5O6P7" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🔄</span>
+                                    <div>
+                                        <div class="note-title">Flip-Flops & Counters</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/9I0J1K2L3M4N5O6P7Q8" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🏗️</span>
+                                    <div>
+                                        <div class="note-title">Combinational Circuits</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="subject-card" data-category="electronics" data-keywords="network theory circuits analysis">
+                    <div class="subject-header">
+                        <span class="subject-icon" aria-hidden="true">⚡</span>
+                        <h3 class="subject-title">Network Theory</h3>
+                    </div>
+                    <div class="subject-meta">
+                        <span class="meta-badge semester-badge">Semester 2</span>
+                        <span class="meta-badge notes-count">3 Notes</span>
+                        <span class="meta-badge difficulty-badge">Advanced</span>
+                    </div>
+                    <ul class="notes-list">
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/0J1K2L3M4N5O6P7Q8R9" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🔗</span>
+                                    <div>
+                                        <div class="note-title">Circuit Analysis Techniques</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/1K2L3M4N5O6P7Q8R9S0" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📡</span>
+                                    <div>
+                                        <div class="note-title">AC Circuit Analysis</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/2L3M4N5O6P7Q8R9S0T1" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🎛️</span>
+                                    <div>
+                                        <div class="note-title">Laplace Transform</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="subject-card" data-category="computer-science" data-keywords="data structures algorithms arrays">
+                    <div class="subject-header">
+                        <span class="subject-icon" aria-hidden="true">🗂️</span>
+                        <h3 class="subject-title">Data Structures</h3>
+                    </div>
+                    <div class="subject-meta">
+                        <span class="meta-badge semester-badge">Semester 3</span>
+                        <span class="meta-badge notes-count">3 Notes</span>
+                        <span class="meta-badge difficulty-badge">Intermediate</span>
+                    </div>
+                    <ul class="notes-list">
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/3M4N5O6P7Q8R9S0T1U2" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📚</span>
+                                    <div>
+                                        <div class="note-title">Stacks and Queues</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/4N5O6P7Q8R9S0T1U2V3" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">🌳</span>
+                                    <div>
+                                        <div class="note-title">Trees and Binary Trees</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                        <li class="note-item">
+                            <a href="https://drive.google.com/drive/folders/5O6P7Q8R9S0T1U2V3W4" target="_blank" class="note-link">
+                                <div class="note-info">
+                                    <span class="note-icon" aria-hidden="true">📊</span>
+                                    <div>
+                                        <div class="note-title">Graphs and Algorithms</div>
+                                        <div class="note-size">Folder</div>
+                                    </div>
+                                </div>
+                                <span class="download-icon" aria-hidden="true">⬇️</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="no-results" id="noResults">
+                <div class="no-results-icon">🔍</div>
+                <p>No subjects found matching your search.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 StudyHub - Empowering Students Worldwide. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Search and Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const noResults = document.getElementById('noResults');
+
+        function filterSubjects() {
+            const searchText = searchInput.value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            let visibleCards = 0;
+
+            subjectCards.forEach(card => {
+                const category = card.dataset.category;
+                const keywords = card.dataset.keywords.toLowerCase();
+                const title = card.querySelector('.subject-title').textContent.toLowerCase();
+                const matchesSearch = title.includes(searchText) || keywords.includes(searchText);
+                const matchesFilter = activeFilter === 'all' || category === activeFilter;
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                    visibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCards === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterSubjects);
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterSubjects();
+            });
+        });
+    </script>
+</body>
+</html>
